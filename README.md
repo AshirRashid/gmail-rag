@@ -94,14 +94,31 @@ python query.py
 With a custom query:
 
 ```bash
-python query.py "team lunch or dinner next week"
+python query.py -q "an email inviting me to a team lunch or dinner with a date and time"
 ```
 
 To return more results:
 
 ```bash
-N_RESULTS=10 python query.py
+N_RESULTS=10 python query.py -q "an email about an upcoming deadline or submission date"
 ```
+
+### Writing good queries
+
+The model matches meaning, not keywords. Queries work best when phrased as a description of the email you're looking for, written in natural language.
+
+| Goal | Good query |
+|---|---|
+| Find event invites | `an email inviting me to an event, party, or gathering with a specific date` |
+| Find meetings | `an email asking me to join a meeting or call at a scheduled time` |
+| Find appointments | `an email confirming a doctor, dentist, or personal appointment` |
+| Find deadlines | `an email mentioning an upcoming deadline, due date, or submission cutoff` |
+| Find travel | `an email with flight, hotel, or travel booking confirmation and dates` |
+
+**Tips:**
+- Describe the email, not what you want to do — *"an email confirming..."* not *"find confirmations..."*
+- Include the type of information you expect — dates, times, locations make queries more precise
+- Avoid single keywords — *"an email about a job interview with a scheduled time"* outperforms *"interview"*
 
 ---
 
