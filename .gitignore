@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+chroma-data/
+chroma.log
+chroma.pid
+token.json
+*.json
+!requirements*.json
