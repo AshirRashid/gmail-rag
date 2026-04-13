@@ -23,7 +23,7 @@ DEFAULT_QUERY = (
 N_RESULTS = int(os.getenv("N_RESULTS", "5"))
 
 
-def query(text: str = DEFAULT_QUERY, n_results: int = N_RESULTS) -> None:
+def query(text: str = DEFAULT_QUERY, n_results: int = N_RESULTS) -> list[dict]:
     client = chromadb.HttpClient(host=CHROMA_HOST, port=CHROMA_PORT)
 
     try:
@@ -32,10 +32,9 @@ def query(text: str = DEFAULT_QUERY, n_results: int = N_RESULTS) -> None:
             embedding_function=BGEEmbeddings(EMBED_MODEL),
         )
     except Exception as exc:
-        print(
-            f"Collection '{CHROMA_COLLECTION}' not found — run pipeline.py first.\n{exc}"
-        )
-        return
+        raise RuntimeError(
+            f"Collection '{CHROMA_COLLECTION}' not found — run pipeline.py first."
+        ) from exc
 
     results = collection.query(
         query_texts=[text],
@@ -43,20 +42,20 @@ def query(text: str = DEFAULT_QUERY, n_results: int = N_RESULTS) -> None:
         include=["documents", "metadatas", "distances"],
     )
 
-    docs = results["documents"][0]
-    metas = results["metadatas"][0]
-    distances = results["distances"][0]
-
-    print(f"\nQuery : {text}")
-    print("=" * 60)
-    for i, (doc, meta, dist) in enumerate(zip(docs, metas, distances), 1):
-        score = 1.0 - dist  # cosine similarity (collection uses cosine space)
-        snippet = doc[:300].replace("\n", " ")
-        print(f"\n[{i}]  score={score:.3f}")
-        print(f"     Subject : {meta.get('subject', 'N/A')}")
-        print(f"     From    : {meta.get('sender', 'N/A')}")
-        print(f"     Date    : {meta.get('date', 'N/A')}")
-        print(f"     Snippet : {snippet}...")
+    return [
+        {
+            "subject": meta.get("subject", "N/A"),
+            "sender": meta.get("sender", "N/A"),
+            "date": meta.get("date", "N/A"),
+            "score": round(1.0 - dist, 3),
+            "snippet": doc[:300].replace("\n", " "),
+        }
+        for doc, meta, dist in zip(
+            results["documents"][0],
+            results["metadatas"][0],
+            results["distances"][0],
+        )
+    ]
 
 
 if __name__ == "__main__":
@@ -64,4 +63,10 @@ if __name__ == "__main__":
     parser.add_argument("-q", "--query", default=DEFAULT_QUERY, help="Search query (default: event/meeting/schedule query)")
     parser.add_argument("-n", "--n-results", type=int, default=N_RESULTS, help=f"Number of results to return (default: {N_RESULTS})")
     args = parser.parse_args()
-    query(args.query, args.n_results)
+
+    for i, r in enumerate(query(args.query, args.n_results), 1):
+        print(f"\n[{i}]  score={r['score']}")
+        print(f"     Subject : {r['subject']}")
+        print(f"     From    : {r['sender']}")
+        print(f"     Date    : {r['date']}")
+        print(f"     Snippet : {r['snippet']}...")
