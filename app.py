@@ -21,5 +21,4 @@ gr.Interface(
     inputs=gr.Textbox(label="Query", placeholder=DEFAULT_QUERY, lines=2),
     outputs=gr.Markdown(label="Results"),
     title="Email Event Finder",
-    allow_flagging="never",
 ).launch()
