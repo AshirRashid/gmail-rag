@@ -29,6 +29,7 @@ class Email:
     sender: str
     date: str
     body: str
+    is_reply: bool = False  # True if In-Reply-To header is present
 
 
 # ---------------------------------------------------------------------------
@@ -139,6 +140,7 @@ def fetch_emails(n: int = 50) -> list[Email]:
             sender=headers.get("from", "Unknown"),
             date=headers.get("date", "Unknown"),
             body=body,
+            is_reply="in-reply-to" in headers,
         ))
 
     print(f"Fetched {len(emails)} emails")

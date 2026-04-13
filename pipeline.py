@@ -1,39 +1,27 @@
 """
-Ingestion pipeline: Gmail → clean → chunk → embed → ChromaDB upsert.
+Ingestion pipeline: Gmail → clean → embed whole email → ChromaDB upsert.
+
+Only original emails are indexed; replies (identified by the In-Reply-To header)
+are skipped so each thread is represented once by its opening message.
 
 Run directly:
     python pipeline.py            # uses N_EMAILS env var (default 50)
     N_EMAILS=200 python pipeline.py
 """
 
-import os
-from dataclasses import dataclass
-
 import chromadb
 from email_reply_parser import EmailReplyParser
 
-from config import (
-    CHUNK_OVERLAP,
-    CHUNK_SIZE,
-    CHROMA_COLLECTION,
-    CHROMA_HOST,
-    CHROMA_PORT,
-    EMBED_MODEL,
-    N_EMAILS,
-)
+from config import CHROMA_COLLECTION, CHROMA_HOST, CHROMA_PORT, EMBED_MODEL, N_EMAILS
 from embeddings import BGEEmbeddings
 from gmail_client import Email, fetch_emails
 
-
-# ---------------------------------------------------------------------------
-# Clean
-# ---------------------------------------------------------------------------
 
 _STRIP_SENTINELS = ("unsubscribe", "view this email in your browser")
 
 
 def _clean(body: str) -> str:
-    """Remove quoted replies and common footer noise."""
+    """Strip quoted reply blocks and common footer noise."""
     text = EmailReplyParser.parse_reply(body)
     lower = text.lower()
     for sentinel in _STRIP_SENTINELS:
@@ -44,66 +32,40 @@ def _clean(body: str) -> str:
     return "\n".join(line.rstrip() for line in text.splitlines()).strip()
 
 
-# ---------------------------------------------------------------------------
-# Chunk  (no external dependency — simple sliding window)
-# ---------------------------------------------------------------------------
-
-@dataclass
-class Chunk:
-    id: str
-    text: str
-    metadata: dict
-
-
-def _chunk(email: Email, body: str) -> list[Chunk]:
-    header = (
+def _to_document(email: Email, body: str) -> str:
+    """Format the email as a single string for embedding."""
+    return (
         f"From: {email.sender}\n"
         f"Subject: {email.subject}\n"
         f"Date: {email.date}\n\n"
+        f"{body}"
     )
-    full_text = header + body
-    pieces: list[str] = []
-    start = 0
-    while start < len(full_text):
-        pieces.append(full_text[start : start + CHUNK_SIZE])
-        if start + CHUNK_SIZE >= len(full_text):
-            break
-        start += CHUNK_SIZE - CHUNK_OVERLAP
 
-    base_meta = {
-        "email_id": email.id,
-        "thread_id": email.thread_id,
-        "subject": email.subject,
-        "sender": email.sender,
-        "date": email.date,
-    }
-    return [
-        Chunk(
-            id=f"{email.id}-{i}",
-            text=piece,
-            metadata={**base_meta, "chunk_index": i},
-        )
-        for i, piece in enumerate(pieces)
-    ]
-
-
-# ---------------------------------------------------------------------------
-# Pipeline
-# ---------------------------------------------------------------------------
 
 def run(n: int = N_EMAILS) -> dict:
     emails = fetch_emails(n)
     if not emails:
         print("No emails to process.")
-        return {"status": "done", "chunks_saved": 0}
+        return {"status": "done", "emails_saved": 0}
 
-    all_chunks: list[Chunk] = []
-    for email in emails:
+    originals = [e for e in emails if not e.is_reply]
+    skipped = len(emails) - len(originals)
+    print(f"Skipped {skipped} replies, processing {len(originals)} original emails")
+
+    ids, documents, metadatas = [], [], []
+    for email in originals:
         body = _clean(email.body)
-        if body:
-            all_chunks.extend(_chunk(email, body))
-
-    print(f"Created {len(all_chunks)} chunks from {len(emails)} emails")
+        if not body:
+            continue
+        ids.append(email.id)
+        documents.append(_to_document(email, body))
+        metadatas.append({
+            "email_id": email.id,
+            "thread_id": email.thread_id,
+            "subject": email.subject,
+            "sender": email.sender,
+            "date": email.date,
+        })
 
     client = chromadb.HttpClient(host=CHROMA_HOST, port=CHROMA_PORT)
     collection = client.get_or_create_collection(
@@ -112,17 +74,13 @@ def run(n: int = N_EMAILS) -> dict:
         metadata={"hnsw:space": "cosine"},
     )
 
-    # Upsert is idempotent — safe to re-run without creating duplicates
-    collection.upsert(
-        ids=[c.id for c in all_chunks],
-        documents=[c.text for c in all_chunks],
-        metadatas=[c.metadata for c in all_chunks],
-    )
-    print(f"Upserted {len(all_chunks)} chunks → '{CHROMA_COLLECTION}'")
+    collection.upsert(ids=ids, documents=documents, metadatas=metadatas)
+    print(f"Upserted {len(ids)} emails → '{CHROMA_COLLECTION}'")
     return {
         "status": "done",
-        "emails_processed": len(emails),
-        "chunks_saved": len(all_chunks),
+        "emails_processed": len(originals),
+        "replies_skipped": skipped,
+        "emails_saved": len(ids),
         "collection": CHROMA_COLLECTION,
     }
 

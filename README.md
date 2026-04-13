@@ -5,10 +5,11 @@ Scans your Gmail inbox and surfaces emails that contain events, meetings, or sch
 ## How it works
 
 1. Fetches emails from Gmail via the API
-2. Cleans and chunks each email body
-3. Embeds chunks with `BAAI/bge-base-en-v1.5` (runs locally)
-4. Stores embeddings in ChromaDB
-5. Queries the DB semantically to find event-related emails
+2. Skips replies — only the original (first) email in each thread is indexed
+3. Cleans each email body (strips quoted replies, footers)
+4. Embeds each email as a single document with `BAAI/bge-base-en-v1.5` (runs locally)
+5. Stores embeddings in ChromaDB
+6. Queries the DB semantically to find event-related emails
 
 ---
 
@@ -115,5 +116,5 @@ All settings can be overridden with environment variables:
 | `CHROMA_PORT` | `8000` | ChromaDB port |
 | `CHROMA_COLLECTION` | `emails` | Collection name |
 | `EMBED_MODEL` | `BAAI/bge-base-en-v1.5` | Embedding model |
-| `N_EMAILS` | `50` | Emails to fetch per pipeline run |
+| `N_EMAILS` | `50` | Emails to fetch per pipeline run (replies are filtered out automatically) |
 | `N_RESULTS` | `5` | Results returned per query |

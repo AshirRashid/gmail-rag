@@ -14,5 +14,3 @@ EMBED_MODEL = os.getenv("EMBED_MODEL", "BAAI/bge-base-en-v1.5")
 
 # Pipeline
 N_EMAILS = int(os.getenv("N_EMAILS", "50"))
-CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", "1500"))
-CHUNK_OVERLAP = int(os.getenv("CHUNK_OVERLAP", "200"))
