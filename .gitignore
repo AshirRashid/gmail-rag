@@ -7,3 +7,6 @@ chroma.pid
 token.json
 *.json
 !requirements*.json
+!eval/synthetic_corpus/*.json
+!eval/results/*.json
+.worktrees/
