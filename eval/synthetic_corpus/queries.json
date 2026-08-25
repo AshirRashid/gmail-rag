@@ -1,0 +1,148 @@
+[
+  {
+    "query": "an email inviting me to an event, party, or gathering with a specific date",
+    "relevant_ids": [
+      "events-001",
+      "events-002",
+      "events-003",
+      "events-004",
+      "events-005",
+      "events-006",
+      "events-007",
+      "events-008",
+      "events-009",
+      "events-010",
+      "events-011",
+      "events-012"
+    ]
+  },
+  {
+    "query": "an email about an upcoming deadline, due date, or submission cutoff",
+    "relevant_ids": [
+      "deadlines-001",
+      "deadlines-002",
+      "deadlines-003",
+      "deadlines-004",
+      "deadlines-005",
+      "deadlines-006",
+      "deadlines-007",
+      "deadlines-008",
+      "deadlines-009",
+      "deadlines-010",
+      "deadlines-011",
+      "deadlines-012"
+    ]
+  },
+  {
+    "query": "a newsletter or weekly digest roundup",
+    "relevant_ids": [
+      "newsletters-001",
+      "newsletters-002",
+      "newsletters-003",
+      "newsletters-004",
+      "newsletters-005",
+      "newsletters-006",
+      "newsletters-007",
+      "newsletters-008",
+      "newsletters-009",
+      "newsletters-010",
+      "newsletters-011",
+      "newsletters-012"
+    ]
+  },
+  {
+    "query": "a receipt or payment confirmation for something I bought",
+    "relevant_ids": [
+      "receipts-001",
+      "receipts-002",
+      "receipts-003",
+      "receipts-004",
+      "receipts-005",
+      "receipts-006",
+      "receipts-007",
+      "receipts-008",
+      "receipts-009",
+      "receipts-010",
+      "receipts-011",
+      "receipts-012"
+    ]
+  },
+  {
+    "query": "an email confirming a dentist or doctor appointment",
+    "relevant_ids": [
+      "events-001"
+    ]
+  },
+  {
+    "query": "an email about a lease or rental agreement renewal",
+    "relevant_ids": [
+      "deadlines-010"
+    ]
+  },
+  {
+    "query": "an email about a grant or research funding deadline",
+    "relevant_ids": [
+      "deadlines-001"
+    ]
+  },
+  {
+    "query": "a reminder about onboarding paperwork for a new job",
+    "relevant_ids": [
+      "deadlines-007"
+    ]
+  },
+  {
+    "query": "an email about AI or machine learning research news",
+    "relevant_ids": [
+      "newsletters-004",
+      "newsletters-007",
+      "newsletters-010"
+    ]
+  },
+  {
+    "query": "an email about a subscription renewal charge",
+    "relevant_ids": [
+      "receipts-010",
+      "receipts-011",
+      "receipts-012"
+    ]
+  },
+  {
+    "query": "a birthday party invitation",
+    "relevant_ids": [
+      "events-003"
+    ]
+  },
+  {
+    "query": "a conference paper camera-ready submission reminder",
+    "relevant_ids": [
+      "deadlines-004"
+    ]
+  },
+  {
+    "query": "an email about a team dinner or social event",
+    "relevant_ids": [
+      "events-004"
+    ]
+  },
+  {
+    "query": "a purchase confirmation for office equipment",
+    "relevant_ids": [
+      "receipts-001"
+    ]
+  },
+  {
+    "query": "an alumni network event invitation",
+    "relevant_ids": [
+      "events-002"
+    ]
+  },
+  {
+    "query": "a fintech industry news roundup",
+    "relevant_ids": [
+      "newsletters-001",
+      "newsletters-008",
+      "newsletters-011"
+    ]
+  }
+]

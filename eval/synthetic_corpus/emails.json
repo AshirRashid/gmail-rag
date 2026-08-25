@@ -1,0 +1,542 @@
+[
+  {
+    "id": "events-001",
+    "thread_id": "t-events-001",
+    "subject": "You're invited: a dentist appointment on Tuesday",
+    "sender": "parties@evite-clone.com",
+    "date": "Mon, 1 Jan 2026",
+    "body": "RSVP by Tuesday - a dentist appointment kicks off at 3pm at Downtown Dental. Bring a friend.",
+    "is_reply": false
+  },
+  {
+    "id": "events-002",
+    "thread_id": "t-events-002",
+    "subject": "You're invited: the alumni mixer on next Thursday",
+    "sender": "alumni@nyuad-network.org",
+    "date": "Mon, 1 Jan 2026",
+    "body": "RSVP by next Thursday - the alumni mixer kicks off at 6:30pm at The Rooftop. Bring a friend.",
+    "is_reply": false
+  },
+  {
+    "id": "events-003",
+    "thread_id": "t-events-003",
+    "subject": "You're invited: a birthday party on Saturday",
+    "sender": "team-social@acme-labs.io",
+    "date": "Mon, 1 Jan 2026",
+    "body": "RSVP by Saturday - a birthday party kicks off at noon at Riverside Park. Bring a friend.",
+    "is_reply": false
+  },
+  {
+    "id": "events-004",
+    "thread_id": "t-events-004",
+    "subject": "Save the date - the team dinner at The Local Bistro",
+    "sender": "parties@evite-clone.com",
+    "date": "Mon, 1 Jan 2026",
+    "body": "We're hosting the team dinner on Friday at The Local Bistro. Details and RSVP link inside.",
+    "is_reply": false
+  },
+  {
+    "id": "events-005",
+    "thread_id": "t-events-005",
+    "subject": "Save the date - the alumni mixer at The Rooftop",
+    "sender": "alumni@nyuad-network.org",
+    "date": "Mon, 1 Jan 2026",
+    "body": "We're hosting the alumni mixer on next Thursday at The Rooftop. Details and RSVP link inside.",
+    "is_reply": false
+  },
+  {
+    "id": "events-006",
+    "thread_id": "t-events-006",
+    "subject": "Save the date - a birthday party at Riverside Park",
+    "sender": "team-social@acme-labs.io",
+    "date": "Mon, 1 Jan 2026",
+    "body": "We're hosting a birthday party on Saturday at Riverside Park. Details and RSVP link inside.",
+    "is_reply": false
+  },
+  {
+    "id": "events-007",
+    "thread_id": "t-events-007",
+    "subject": "Reminder: the team dinner starts 7pm",
+    "sender": "parties@evite-clone.com",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Just a reminder that the team dinner starts at 7pm on Friday. See you there.",
+    "is_reply": false
+  },
+  {
+    "id": "events-008",
+    "thread_id": "t-events-008",
+    "subject": "Reminder: a dentist appointment starts 3pm",
+    "sender": "alumni@nyuad-network.org",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Just a reminder that a dentist appointment starts at 3pm on Tuesday. See you there.",
+    "is_reply": false
+  },
+  {
+    "id": "events-009",
+    "thread_id": "t-events-009",
+    "subject": "Reminder: a birthday party starts noon",
+    "sender": "team-social@acme-labs.io",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Just a reminder that a birthday party starts at noon on Saturday. See you there.",
+    "is_reply": false
+  },
+  {
+    "id": "events-010",
+    "thread_id": "t-events-010",
+    "subject": "Join us for the team dinner",
+    "sender": "parties@evite-clone.com",
+    "date": "Mon, 1 Jan 2026",
+    "body": "the team dinner is happening Friday at The Local Bistro, starting 7pm. Hope to see you.",
+    "is_reply": false
+  },
+  {
+    "id": "events-011",
+    "thread_id": "t-events-011",
+    "subject": "Join us for a dentist appointment",
+    "sender": "alumni@nyuad-network.org",
+    "date": "Mon, 1 Jan 2026",
+    "body": "a dentist appointment is happening Tuesday at Downtown Dental, starting 3pm. Hope to see you.",
+    "is_reply": false
+  },
+  {
+    "id": "events-012",
+    "thread_id": "t-events-012",
+    "subject": "Join us for the alumni mixer",
+    "sender": "team-social@acme-labs.io",
+    "date": "Mon, 1 Jan 2026",
+    "body": "the alumni mixer is happening next Thursday at The Rooftop, starting 6:30pm. Hope to see you.",
+    "is_reply": false
+  },
+  {
+    "id": "deadlines-001",
+    "thread_id": "t-deadlines-001",
+    "subject": "Re: Grant renewal - documents due next Monday",
+    "sender": "research-office@university.edu",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Reminder that the renewal packet, including the budget justification, is due before end of day next Monday.",
+    "is_reply": false
+  },
+  {
+    "id": "deadlines-002",
+    "thread_id": "t-deadlines-002",
+    "subject": "Re: Grant renewal - documents due the 30th",
+    "sender": "no-reply@conference-system.org",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Reminder that the renewal packet, including the budget justification, is due before end of day the 30th.",
+    "is_reply": false
+  },
+  {
+    "id": "deadlines-003",
+    "thread_id": "t-deadlines-003",
+    "subject": "Re: Grant renewal - documents due end of week",
+    "sender": "hr@acme-labs.io",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Reminder that the renewal packet, including the budget justification, is due before end of day end of week.",
+    "is_reply": false
+  },
+  {
+    "id": "deadlines-004",
+    "thread_id": "t-deadlines-004",
+    "subject": "Your submission window closes this Friday",
+    "sender": "research-office@university.edu",
+    "date": "Mon, 1 Jan 2026",
+    "body": "This is a reminder that the camera-ready deadline for accepted papers is this Friday. Please upload your final PDF.",
+    "is_reply": false
+  },
+  {
+    "id": "deadlines-005",
+    "thread_id": "t-deadlines-005",
+    "subject": "Your submission window closes the 30th",
+    "sender": "no-reply@conference-system.org",
+    "date": "Mon, 1 Jan 2026",
+    "body": "This is a reminder that the camera-ready deadline for accepted papers is the 30th. Please upload your final PDF.",
+    "is_reply": false
+  },
+  {
+    "id": "deadlines-006",
+    "thread_id": "t-deadlines-006",
+    "subject": "Your submission window closes end of week",
+    "sender": "hr@acme-labs.io",
+    "date": "Mon, 1 Jan 2026",
+    "body": "This is a reminder that the camera-ready deadline for accepted papers is end of week. Please upload your final PDF.",
+    "is_reply": false
+  },
+  {
+    "id": "deadlines-007",
+    "thread_id": "t-deadlines-007",
+    "subject": "Action required: onboarding paperwork due this Friday",
+    "sender": "research-office@university.edu",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Please complete and return the onboarding forms by this Friday so payroll can be set up on time.",
+    "is_reply": false
+  },
+  {
+    "id": "deadlines-008",
+    "thread_id": "t-deadlines-008",
+    "subject": "Action required: onboarding paperwork due next Monday",
+    "sender": "no-reply@conference-system.org",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Please complete and return the onboarding forms by next Monday so payroll can be set up on time.",
+    "is_reply": false
+  },
+  {
+    "id": "deadlines-009",
+    "thread_id": "t-deadlines-009",
+    "subject": "Action required: onboarding paperwork due end of week",
+    "sender": "hr@acme-labs.io",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Please complete and return the onboarding forms by end of week so payroll can be set up on time.",
+    "is_reply": false
+  },
+  {
+    "id": "deadlines-010",
+    "thread_id": "t-deadlines-010",
+    "subject": "Lease renewal - sign by this Friday",
+    "sender": "research-office@university.edu",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Please return the signed renewal by this Friday so we can lock in the current rate before it expires.",
+    "is_reply": false
+  },
+  {
+    "id": "deadlines-011",
+    "thread_id": "t-deadlines-011",
+    "subject": "Lease renewal - sign by next Monday",
+    "sender": "no-reply@conference-system.org",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Please return the signed renewal by next Monday so we can lock in the current rate before it expires.",
+    "is_reply": false
+  },
+  {
+    "id": "deadlines-012",
+    "thread_id": "t-deadlines-012",
+    "subject": "Lease renewal - sign by the 30th",
+    "sender": "hr@acme-labs.io",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Please return the signed renewal by the 30th so we can lock in the current rate before it expires.",
+    "is_reply": false
+  },
+  {
+    "id": "newsletters-001",
+    "thread_id": "t-newsletters-001",
+    "subject": "This week in fintech",
+    "sender": "digest@techweekly.com",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Top stories in fintech this week: a roundup of what mattered and why.",
+    "is_reply": false
+  },
+  {
+    "id": "newsletters-002",
+    "thread_id": "t-newsletters-002",
+    "subject": "This week in open source",
+    "sender": "updates@fintech-brief.io",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Top stories in open source this week: a roundup of what mattered and why.",
+    "is_reply": false
+  },
+  {
+    "id": "newsletters-003",
+    "thread_id": "t-newsletters-003",
+    "subject": "This week in climate tech",
+    "sender": "news@opensource-monthly.org",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Top stories in climate tech this week: a roundup of what mattered and why.",
+    "is_reply": false
+  },
+  {
+    "id": "newsletters-004",
+    "thread_id": "t-newsletters-004",
+    "subject": "AI research digest - issue #42",
+    "sender": "digest@techweekly.com",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Your AI research digest for this week. Curated links and short takes below.",
+    "is_reply": false
+  },
+  {
+    "id": "newsletters-005",
+    "thread_id": "t-newsletters-005",
+    "subject": "open source digest - issue #88",
+    "sender": "updates@fintech-brief.io",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Your open source digest for this week. Curated links and short takes below.",
+    "is_reply": false
+  },
+  {
+    "id": "newsletters-006",
+    "thread_id": "t-newsletters-006",
+    "subject": "climate tech digest - issue #9",
+    "sender": "news@opensource-monthly.org",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Your climate tech digest for this week. Curated links and short takes below.",
+    "is_reply": false
+  },
+  {
+    "id": "newsletters-007",
+    "thread_id": "t-newsletters-007",
+    "subject": "The AI research roundup",
+    "sender": "digest@techweekly.com",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Five things worth knowing in AI research this week, summarized.",
+    "is_reply": false
+  },
+  {
+    "id": "newsletters-008",
+    "thread_id": "t-newsletters-008",
+    "subject": "The fintech roundup",
+    "sender": "updates@fintech-brief.io",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Five things worth knowing in fintech this week, summarized.",
+    "is_reply": false
+  },
+  {
+    "id": "newsletters-009",
+    "thread_id": "t-newsletters-009",
+    "subject": "The climate tech roundup",
+    "sender": "news@opensource-monthly.org",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Five things worth knowing in climate tech this week, summarized.",
+    "is_reply": false
+  },
+  {
+    "id": "newsletters-010",
+    "thread_id": "t-newsletters-010",
+    "subject": "AI research weekly",
+    "sender": "digest@techweekly.com",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Here's what happened in AI research this week, in five minutes or less.",
+    "is_reply": false
+  },
+  {
+    "id": "newsletters-011",
+    "thread_id": "t-newsletters-011",
+    "subject": "fintech weekly",
+    "sender": "updates@fintech-brief.io",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Here's what happened in fintech this week, in five minutes or less.",
+    "is_reply": false
+  },
+  {
+    "id": "newsletters-012",
+    "thread_id": "t-newsletters-012",
+    "subject": "open source weekly",
+    "sender": "news@opensource-monthly.org",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Here's what happened in open source this week, in five minutes or less.",
+    "is_reply": false
+  },
+  {
+    "id": "receipts-001",
+    "thread_id": "t-receipts-001",
+    "subject": "Your receipt for wireless keyboard",
+    "sender": "receipts@cloudhost.com",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Thanks for your purchase. wireless keyboard - total $64.00, charged to your card ending in 4412.",
+    "is_reply": false
+  },
+  {
+    "id": "receipts-002",
+    "thread_id": "t-receipts-002",
+    "subject": "Your receipt for streaming subscription",
+    "sender": "billing@streamplus.io",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Thanks for your purchase. streaming subscription - total $12.99, charged to your card ending in 4412.",
+    "is_reply": false
+  },
+  {
+    "id": "receipts-003",
+    "thread_id": "t-receipts-003",
+    "subject": "Your receipt for monitor stand",
+    "sender": "orders@gearshop.com",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Thanks for your purchase. monitor stand - total $38.50, charged to your card ending in 4412.",
+    "is_reply": false
+  },
+  {
+    "id": "receipts-004",
+    "thread_id": "t-receipts-004",
+    "subject": "Payment confirmation - cloud storage plan",
+    "sender": "receipts@cloudhost.com",
+    "date": "Mon, 1 Jan 2026",
+    "body": "We've received your payment of $9.99 for cloud storage plan. This receipt is for your records.",
+    "is_reply": false
+  },
+  {
+    "id": "receipts-005",
+    "thread_id": "t-receipts-005",
+    "subject": "Payment confirmation - streaming subscription",
+    "sender": "billing@streamplus.io",
+    "date": "Mon, 1 Jan 2026",
+    "body": "We've received your payment of $12.99 for streaming subscription. This receipt is for your records.",
+    "is_reply": false
+  },
+  {
+    "id": "receipts-006",
+    "thread_id": "t-receipts-006",
+    "subject": "Payment confirmation - monitor stand",
+    "sender": "orders@gearshop.com",
+    "date": "Mon, 1 Jan 2026",
+    "body": "We've received your payment of $38.50 for monitor stand. This receipt is for your records.",
+    "is_reply": false
+  },
+  {
+    "id": "receipts-007",
+    "thread_id": "t-receipts-007",
+    "subject": "Order confirmed: cloud storage plan",
+    "sender": "receipts@cloudhost.com",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Your order for cloud storage plan ($9.99) has been confirmed and will ship shortly.",
+    "is_reply": false
+  },
+  {
+    "id": "receipts-008",
+    "thread_id": "t-receipts-008",
+    "subject": "Order confirmed: wireless keyboard",
+    "sender": "billing@streamplus.io",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Your order for wireless keyboard ($64.00) has been confirmed and will ship shortly.",
+    "is_reply": false
+  },
+  {
+    "id": "receipts-009",
+    "thread_id": "t-receipts-009",
+    "subject": "Order confirmed: monitor stand",
+    "sender": "orders@gearshop.com",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Your order for monitor stand ($38.50) has been confirmed and will ship shortly.",
+    "is_reply": false
+  },
+  {
+    "id": "receipts-010",
+    "thread_id": "t-receipts-010",
+    "subject": "Subscription renewed - cloud storage plan",
+    "sender": "receipts@cloudhost.com",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Your subscription to cloud storage plan renewed for $9.99. Manage your plan anytime.",
+    "is_reply": false
+  },
+  {
+    "id": "receipts-011",
+    "thread_id": "t-receipts-011",
+    "subject": "Subscription renewed - wireless keyboard",
+    "sender": "billing@streamplus.io",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Your subscription to wireless keyboard renewed for $64.00. Manage your plan anytime.",
+    "is_reply": false
+  },
+  {
+    "id": "receipts-012",
+    "thread_id": "t-receipts-012",
+    "subject": "Subscription renewed - streaming subscription",
+    "sender": "orders@gearshop.com",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Your subscription to streaming subscription renewed for $12.99. Manage your plan anytime.",
+    "is_reply": false
+  },
+  {
+    "id": "thread-orig-001",
+    "thread_id": "thread-001",
+    "subject": "Project update #1",
+    "sender": "manager@acme-labs.io",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Here's the status on project 1: on track, no blockers, next check-in Friday.",
+    "is_reply": false
+  },
+  {
+    "id": "thread-reply-001",
+    "thread_id": "thread-001",
+    "subject": "Re: Project update #1",
+    "sender": "you@acme-labs.io",
+    "date": "Tue, 2 Jan 2026",
+    "body": "> Here's the status on project 1: on track...\n\nThanks, sounds good.",
+    "is_reply": true
+  },
+  {
+    "id": "thread-orig-002",
+    "thread_id": "thread-002",
+    "subject": "Project update #2",
+    "sender": "manager@acme-labs.io",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Here's the status on project 2: on track, no blockers, next check-in Friday.",
+    "is_reply": false
+  },
+  {
+    "id": "thread-reply-002",
+    "thread_id": "thread-002",
+    "subject": "Re: Project update #2",
+    "sender": "you@acme-labs.io",
+    "date": "Tue, 2 Jan 2026",
+    "body": "> Here's the status on project 2: on track...\n\nThanks, sounds good.",
+    "is_reply": true
+  },
+  {
+    "id": "thread-orig-003",
+    "thread_id": "thread-003",
+    "subject": "Project update #3",
+    "sender": "manager@acme-labs.io",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Here's the status on project 3: on track, no blockers, next check-in Friday.",
+    "is_reply": false
+  },
+  {
+    "id": "thread-reply-003",
+    "thread_id": "thread-003",
+    "subject": "Re: Project update #3",
+    "sender": "you@acme-labs.io",
+    "date": "Tue, 2 Jan 2026",
+    "body": "> Here's the status on project 3: on track...\n\nThanks, sounds good.",
+    "is_reply": true
+  },
+  {
+    "id": "thread-orig-004",
+    "thread_id": "thread-004",
+    "subject": "Project update #4",
+    "sender": "manager@acme-labs.io",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Here's the status on project 4: on track, no blockers, next check-in Friday.",
+    "is_reply": false
+  },
+  {
+    "id": "thread-reply-004",
+    "thread_id": "thread-004",
+    "subject": "Re: Project update #4",
+    "sender": "you@acme-labs.io",
+    "date": "Tue, 2 Jan 2026",
+    "body": "> Here's the status on project 4: on track...\n\nThanks, sounds good.",
+    "is_reply": true
+  },
+  {
+    "id": "thread-orig-005",
+    "thread_id": "thread-005",
+    "subject": "Project update #5",
+    "sender": "manager@acme-labs.io",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Here's the status on project 5: on track, no blockers, next check-in Friday.",
+    "is_reply": false
+  },
+  {
+    "id": "thread-reply-005",
+    "thread_id": "thread-005",
+    "subject": "Re: Project update #5",
+    "sender": "you@acme-labs.io",
+    "date": "Tue, 2 Jan 2026",
+    "body": "> Here's the status on project 5: on track...\n\nThanks, sounds good.",
+    "is_reply": true
+  },
+  {
+    "id": "thread-orig-006",
+    "thread_id": "thread-006",
+    "subject": "Project update #6",
+    "sender": "manager@acme-labs.io",
+    "date": "Mon, 1 Jan 2026",
+    "body": "Here's the status on project 6: on track, no blockers, next check-in Friday.",
+    "is_reply": false
+  },
+  {
+    "id": "thread-reply-006",
+    "thread_id": "thread-006",
+    "subject": "Re: Project update #6",
+    "sender": "you@acme-labs.io",
+    "date": "Tue, 2 Jan 2026",
+    "body": "> Here's the status on project 6: on track...\n\nThanks, sounds good.",
+    "is_reply": true
+  }
+]
