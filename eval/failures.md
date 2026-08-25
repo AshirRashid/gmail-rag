@@ -110,18 +110,9 @@ have come back, and why.
 
 ## Pattern
 
-The data does not support the "whole-email-embedding dilution" theory. None of the semantic
-pipeline's low-recall queries show a sub-topic getting lost inside a longer email, and the corpus
-emails are all one or two sentences long, so there is no long multi-topic email for a sub-topic to
-be diluted out of. Three of the semantic pipeline's four genuinely low scores are simple
-k=5-vs-12-relevant-ids ceiling effects, where the pipeline actually returned all correct-category
-results it had room for (precision@k of 0.80-1.00 on those). The fourth is a one-slot miss from a
-real but narrow category-boundary overlap (a deadline reminder phrased with a specific date,
-confused with an event invite "with a specific date"). On every query with only 1-3 relevant ids,
-semantic recall was a perfect 1.0, including on the two queries where BM25 failed outright (recall
-0.0) due to vocabulary mismatch. BM25's failures, by contrast, cluster around two distinct and
-verifiable causes: literal keyword mismatch between the query and the correct email's actual
-wording (query says "confirmation," answer says "receipt"; query says "research funding deadline,"
-answer says "grant ... due"), and a lack of stopword filtering that lets short, topically unrelated
-newsletter emails outrank longer, correct emails on a single stray match to the word "or,"
-amplified by BM25's document-length normalization (verified directly against raw BM25 scores).
+The data does not support the "whole-email-embedding dilution" theory.
+None of the semantic pipeline's low-recall queries show a sub-topic getting lost inside a longer email, and the corpus emails are all one or two sentences long, so there is no long multi-topic email for a sub-topic to be diluted out of.
+Three of the semantic pipeline's four genuinely low scores are simple k=5-vs-12-relevant-ids ceiling effects, where the pipeline actually returned all correct-category results it had room for (precision@k of 0.80-1.00 on those).
+The fourth is a one-slot miss from a real but narrow category-boundary overlap (a deadline reminder phrased with a specific date, confused with an event invite "with a specific date").
+On every query with only 1-3 relevant ids, semantic recall was a perfect 1.0, including on the two queries where BM25 failed outright (recall 0.0) due to vocabulary mismatch.
+BM25's failures, by contrast, cluster around two distinct and verifiable causes: literal keyword mismatch between the query and the correct email's actual wording (query says "confirmation," answer says "receipt"; query says "research funding deadline," answer says "grant ... due"), and a lack of stopword filtering that lets short, topically unrelated newsletter emails outrank longer, correct emails on a single stray match to the word "or," amplified by BM25's document-length normalization (verified directly against raw BM25 scores).
