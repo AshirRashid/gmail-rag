@@ -42,7 +42,7 @@ have come back, and why.
 - Returned: `['receipts-006', 'receipts-004', 'receipts-003', 'receipts-001', 'receipts-005']`
 - Expected: `['receipts-001', 'receipts-002', 'receipts-003', 'receipts-004', 'receipts-005', 'receipts-006', 'receipts-007', 'receipts-008', 'receipts-009', 'receipts-010', 'receipts-011', 'receipts-012']`
 - Root cause: same as above again.
-  All 5 returned ids are correct-category receipts, including `receipts-001` ("Thanks for your purchase. wireless keyboard...") even though the corpus mixes two different receipt phrasings ("Thanks for your purchase..." vs. "We've received your payment of $X...").
+  All 5 returned ids are correct-category receipts, including `receipts-001` ("Thanks for your purchase. wireless keyboard...") even though the corpus mixes four different receipt phrasings ("Thanks for your purchase...", "We've received your payment of $X...", "Your order for X has been confirmed...", and "Your subscription to X renewed...").
   The score is the k = 5 ceiling, not a quality problem.
 
 ### "an email confirming a dentist or doctor appointment"
