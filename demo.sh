@@ -25,7 +25,7 @@ if nc -z localhost "${CHROMA_PORT}" 2>/dev/null; then
 else
     info "Starting ChromaDB..."
     mkdir -p "$CHROMA_DATA_DIR"
-    nohup chroma run --path "$CHROMA_DATA_DIR" --host 0.0.0.0 --port "$CHROMA_PORT" > chroma.log 2>&1 &
+    nohup chroma run --path "$CHROMA_DATA_DIR" --host 127.0.0.1 --port "$CHROMA_PORT" > chroma.log 2>&1 &
     echo $! > chroma.pid
     for i in $(seq 1 60); do
         nc -z localhost "${CHROMA_PORT}" 2>/dev/null && break

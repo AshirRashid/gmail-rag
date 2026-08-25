@@ -42,7 +42,7 @@ else
     mkdir -p "$CHROMA_DATA_DIR"
     nohup chroma run \
         --path "$CHROMA_DATA_DIR" \
-        --host 0.0.0.0 \
+        --host 127.0.0.1 \
         --port "$CHROMA_PORT" \
         > chroma.log 2>&1 &
     CHROMA_PID=$!
