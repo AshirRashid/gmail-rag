@@ -23,27 +23,15 @@ DEFAULT_QUERY = (
 N_RESULTS = int(os.getenv("N_RESULTS", "5"))
 
 
-def query(text: str = DEFAULT_QUERY, n_results: int = N_RESULTS) -> list[dict]:
-    client = chromadb.HttpClient(host=CHROMA_HOST, port=CHROMA_PORT)
-
-    try:
-        collection = client.get_collection(
-            name=CHROMA_COLLECTION,
-            embedding_function=BGEEmbeddings(EMBED_MODEL),
-        )
-    except Exception as exc:
-        raise RuntimeError(
-            f"Collection '{CHROMA_COLLECTION}' not found — run pipeline.py first."
-        ) from exc
-
+def search_collection(collection, text: str, n_results: int = N_RESULTS) -> list[dict]:
     results = collection.query(
         query_texts=[text],
         n_results=n_results,
         include=["documents", "metadatas", "distances"],
     )
-
     return [
         {
+            "id": meta.get("email_id", "N/A"),
             "subject": meta.get("subject", "N/A"),
             "sender": meta.get("sender", "N/A"),
             "date": meta.get("date", "N/A"),
@@ -56,6 +44,20 @@ def query(text: str = DEFAULT_QUERY, n_results: int = N_RESULTS) -> list[dict]:
             results["distances"][0],
         )
     ]
+
+
+def query(text: str = DEFAULT_QUERY, n_results: int = N_RESULTS) -> list[dict]:
+    client = chromadb.HttpClient(host=CHROMA_HOST, port=CHROMA_PORT)
+    try:
+        collection = client.get_collection(
+            name=CHROMA_COLLECTION,
+            embedding_function=BGEEmbeddings(EMBED_MODEL),
+        )
+    except Exception as exc:
+        raise RuntimeError(
+            f"Collection '{CHROMA_COLLECTION}' not found - run pipeline.py first."
+        ) from exc
+    return search_collection(collection, text, n_results)
 
 
 if __name__ == "__main__":

@@ -42,13 +42,13 @@ else
     mkdir -p "$CHROMA_DATA_DIR"
     nohup chroma run \
         --path "$CHROMA_DATA_DIR" \
-        --host 0.0.0.0 \
+        --host 127.0.0.1 \
         --port "$CHROMA_PORT" \
         > chroma.log 2>&1 &
     CHROMA_PID=$!
     echo "$CHROMA_PID" > chroma.pid
 
-    # Wait up to 60 s for Chroma to be ready (first run is slow — imports + model load)
+    # Wait up to 60 s for Chroma to be ready (first run is slow - imports + model load)
     info "Waiting for ChromaDB to be ready..."
     for i in $(seq 1 60); do
         if nc -z localhost "${CHROMA_PORT}" 2>/dev/null; then

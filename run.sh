@@ -8,7 +8,7 @@ die()  { echo -e "${RED}[error]${NC} $*" >&2; exit 1; }
 cd "$(dirname "$0")"
 
 # ── 1. Virtual environment ────────────────────────────────────────────────────
-[[ -d ".venv" ]] || die ".venv not found — run setup.sh first"
+[[ -d ".venv" ]] || die ".venv not found - run setup.sh first"
 source .venv/bin/activate
 
 # ── 2. ChromaDB ───────────────────────────────────────────────────────────────
@@ -22,7 +22,7 @@ else
     mkdir -p "$CHROMA_DATA_DIR"
     nohup chroma run \
         --path "$CHROMA_DATA_DIR" \
-        --host 0.0.0.0 \
+        --host 127.0.0.1 \
         --port "$CHROMA_PORT" \
         > chroma.log 2>&1 &
     echo $! > chroma.pid
@@ -34,6 +34,24 @@ else
         [[ $i -eq 60 ]] && die "ChromaDB did not start. Check chroma.log."
     done
     info "ChromaDB started"
+fi
+
+# ── 2.5. Auto-ingest if the collection is empty ─────────────────────────────
+COUNT=$(python3 -c "
+import chromadb
+from config import CHROMA_COLLECTION, CHROMA_HOST, CHROMA_PORT, EMBED_MODEL
+from embeddings import BGEEmbeddings
+client = chromadb.HttpClient(host=CHROMA_HOST, port=CHROMA_PORT)
+try:
+    print(client.get_collection(name=CHROMA_COLLECTION, embedding_function=BGEEmbeddings(EMBED_MODEL)).count())
+except Exception:
+    print(0)
+")
+if [[ "$COUNT" -eq 0 ]]; then
+    info "No existing collection - ingesting inbox (this can take a while on first run)..."
+    python pipeline.py
+else
+    info "Existing collection found (${COUNT} emails) - skipping ingest"
 fi
 
 # ── 3. Launch UI ──────────────────────────────────────────────────────────────

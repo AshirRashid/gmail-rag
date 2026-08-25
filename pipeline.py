@@ -42,12 +42,8 @@ def _to_document(email: Email, body: str) -> str:
     )
 
 
-def run(n: int = N_EMAILS) -> dict:
-    emails = fetch_emails(n)
-    if not emails:
-        print("No emails to process.")
-        return {"status": "done", "emails_saved": 0}
-
+def ingest(emails: list[Email], client=None) -> dict:
+    """Clean, embed, and upsert a list of Email objects. Skips replies."""
     originals = [e for e in emails if not e.is_reply]
     skipped = len(emails) - len(originals)
     print(f"Skipped {skipped} replies, processing {len(originals)} original emails")
@@ -67,7 +63,12 @@ def run(n: int = N_EMAILS) -> dict:
             "date": email.date,
         })
 
-    client = chromadb.HttpClient(host=CHROMA_HOST, port=CHROMA_PORT)
+    if not ids:
+        print("No emails to process.")
+        return {"status": "done", "emails_saved": 0}
+
+    if client is None:
+        client = chromadb.HttpClient(host=CHROMA_HOST, port=CHROMA_PORT)
     collection = client.get_or_create_collection(
         name=CHROMA_COLLECTION,
         embedding_function=BGEEmbeddings(EMBED_MODEL),
@@ -83,6 +84,14 @@ def run(n: int = N_EMAILS) -> dict:
         "emails_saved": len(ids),
         "collection": CHROMA_COLLECTION,
     }
+
+
+def run(n: int = N_EMAILS) -> dict:
+    emails = fetch_emails(n)
+    if not emails:
+        print("No emails to process.")
+        return {"status": "done", "emails_saved": 0}
+    return ingest(emails)
 
 
 if __name__ == "__main__":
