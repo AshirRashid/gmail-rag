@@ -10,26 +10,26 @@ die()   { echo -e "${RED}[error]${NC} $*" >&2; exit 1; }
 # ── 0. working directory ─────────────────────────────────────────────────────
 cd "$(dirname "$0")"
 
-# # ── 1. Python version ────────────────────────────────────────────────────────
-# info "Checking Python version..."
-# PYTHON=$(command -v python3.11 || command -v python3 || die "Python 3 not found")
-# PY_VER=$("$PYTHON" -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
-# [[ "${PY_VER}" < "3.11" ]] && die "Python 3.11+ required (found $PY_VER)"
-# info "Using Python $PY_VER at $PYTHON"
+# ── 1. Python version ────────────────────────────────────────────────────────
+info "Checking Python version..."
+PYTHON=$(command -v python3.11 || command -v python3 || die "Python 3 not found")
+PY_VER=$("$PYTHON" -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
+[[ "${PY_VER}" < "3.11" ]] && die "Python 3.11+ required (found $PY_VER)"
+info "Using Python $PY_VER at $PYTHON"
 
-# # ── 2. Virtual environment ───────────────────────────────────────────────────
-# if [[ ! -d ".venv" ]]; then
-#     info "Creating virtual environment..."
-#     "$PYTHON" -m venv .venv
-# fi
-# source .venv/bin/activate
-# info "Virtual environment active"
+# ── 2. Virtual environment ───────────────────────────────────────────────────
+if [[ ! -d ".venv" ]]; then
+    info "Creating virtual environment..."
+    "$PYTHON" -m venv .venv
+fi
+source .venv/bin/activate
+info "Virtual environment active"
 
-# # ── 3. Install dependencies ──────────────────────────────────────────────────
-# info "Installing dependencies..."
-# pip install --quiet --upgrade pip
-# pip install --quiet -r requirements.txt
-# info "Dependencies installed"
+# ── 3. Install dependencies ──────────────────────────────────────────────────
+info "Installing dependencies..."
+pip install --quiet --upgrade pip
+pip install --quiet -r requirements.txt
+info "Dependencies installed"
 
 # ── 4. ChromaDB ──────────────────────────────────────────────────────────────
 CHROMA_PORT="${CHROMA_PORT:-8000}"
