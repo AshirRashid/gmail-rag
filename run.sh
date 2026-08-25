@@ -36,6 +36,24 @@ else
     info "ChromaDB started"
 fi
 
+# ── 2.5. Auto-ingest if the collection is empty ─────────────────────────────
+COUNT=$(python3 -c "
+import chromadb
+from config import CHROMA_COLLECTION, CHROMA_HOST, CHROMA_PORT, EMBED_MODEL
+from embeddings import BGEEmbeddings
+client = chromadb.HttpClient(host=CHROMA_HOST, port=CHROMA_PORT)
+try:
+    print(client.get_collection(name=CHROMA_COLLECTION, embedding_function=BGEEmbeddings(EMBED_MODEL)).count())
+except Exception:
+    print(0)
+")
+if [[ "$COUNT" -eq 0 ]]; then
+    info "No existing collection — ingesting inbox (this can take a while on first run)..."
+    python pipeline.py
+else
+    info "Existing collection found (${COUNT} emails) — skipping ingest"
+fi
+
 # ── 3. Launch UI ──────────────────────────────────────────────────────────────
 info "Launching UI → http://127.0.0.1:7860"
 python app.py
