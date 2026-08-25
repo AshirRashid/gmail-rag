@@ -29,5 +29,5 @@ def test_html_payload_in_email_body_survives_unescaped_into_snippet():
     results = search_collection(collection, "verify your account", n_results=1)
 
     assert payload in results[0]["snippet"], (
-        "payload was altered/stripped — re-check this finding, the pipeline may sanitize after all"
+        "payload was altered/stripped - re-check this finding, the pipeline may sanitize after all"
     )
