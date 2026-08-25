@@ -27,9 +27,10 @@ def measure_ingestion(n_values: list[int]) -> list[dict]:
         subset = [Email(**e) for e in emails[:n]]
         client = chromadb.EphemeralClient()
         start = time.perf_counter()
-        ingest(subset, client=client)
+        result = ingest(subset, client=client)
         elapsed = time.perf_counter() - start
-        results.append({"n": n, "seconds": round(elapsed, 3), "emails_per_sec": round(n / elapsed, 2)})
+        saved = result.get("emails_saved", 0)
+        results.append({"n": n, "seconds": round(elapsed, 3), "emails_per_sec": round(saved / elapsed, 2) if elapsed > 0 else 0.0})
     return results
 
 
@@ -49,7 +50,7 @@ def measure_query_latency(collection, queries: list[str], repeats: int = 3) -> d
 
 
 def run_latency_report(n_values: list[int] = None, repeats: int = 3) -> dict:
-    n_values = n_values or [50, 200]
+    n_values = n_values or [30, 60]
     emails = _load_emails()
     queries = json.loads((CORPUS_DIR / "queries.json").read_text())
     query_texts = [q["query"] for q in queries]
