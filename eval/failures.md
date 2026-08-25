@@ -95,7 +95,7 @@ have come back, and why.
   None of "event," "party," "gathering," or "date" appear in these newsletter bodies at all (bodies read like "Here's what happened in fintech this week, in five minutes or less.").
   `eval/baseline_bm25.py` does no stopword filtering, and these newsletter bodies are very short (about 14 tokens).
   BM25's length-normalization term inflates the score for a matched token in a short document relative to the corpus average, so a single hit on "or" in a 14-word newsletter outscores real topical overlap in a longer, correctly-categorized email.
-  Verified this by computing raw BM25 scores directly with `BM25Retriever`: `newsletters-011` scores 3.246, ahead of most genuine events-* emails, purely off matching "or."
+  Verified this by computing raw BM25 scores directly with `BM25Retriever`: `newsletters-011` scores 3.143, ahead of most genuine events-* emails, purely off matching "or."
 
 ### "an email about an upcoming deadline, due date, or submission cutoff"
 
@@ -103,7 +103,7 @@ have come back, and why.
 - Returned: `['newsletters-011', 'newsletters-010', 'newsletters-012', 'deadlines-001', 'deadlines-002']`
 - Expected: `['deadlines-001', 'deadlines-002', 'deadlines-003', 'deadlines-004', 'deadlines-005', 'deadlines-006', 'deadlines-007', 'deadlines-008', 'deadlines-009', 'deadlines-010', 'deadlines-011', 'deadlines-012']`
 - Root cause: same mechanism as the previous case.
-  The same three short newsletter emails (`newsletters-011/010/012`) crowd out real deadlines-* emails via the stray "or" match, boosted by BM25's short-document length normalization (verified: `newsletters-011` scores 3.246, ahead of `deadlines-003` through `deadlines-012`).
+  The same three short newsletter emails (`newsletters-011/010/012`) crowd out real deadlines-* emails via the stray "or" match, boosted by BM25's short-document length normalization (verified: `newsletters-011` scores 3.143, ahead of `deadlines-003` through `deadlines-012`).
   Two real deadlines emails do make it into the top 5 (`deadlines-001`, `deadlines-002`), but three of five slots are wasted on newsletters that share no topical content with the query.
 
 ### "a receipt or payment confirmation for something I bought"
@@ -111,7 +111,7 @@ have come back, and why.
 - Recall@k: 0.25
 - Returned: `['receipts-005', 'receipts-006', 'receipts-004', 'newsletters-011', 'newsletters-010']`
 - Expected: `['receipts-001', 'receipts-002', 'receipts-003', 'receipts-004', 'receipts-005', 'receipts-006', 'receipts-007', 'receipts-008', 'receipts-009', 'receipts-010', 'receipts-011', 'receipts-012']`
-- Root cause: the first three returned ids are genuine receipts-* hits (all "Payment confirmation - ..." subjects, matching "confirmation" directly, and scoring far higher at 9.461-9.824 than anything else in the corpus).
+- Root cause: the first three returned ids are genuine receipts-* hits (all "Payment confirmation - ..." subjects, matching "confirmation" directly, and scoring far higher at 9.283-8.943 than anything else in the corpus).
   The last two slots go to the same `newsletters-011/010` pair as above, again via the stray "or" match inflated by short-document length normalization, displacing receipts-001/002/003 (the "Thanks for your purchase" phrasing, which shares no literal token with "receipt or payment confirmation") and the rest of the receipts-007-012 range.
 
 ## Pattern
