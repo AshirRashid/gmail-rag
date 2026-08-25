@@ -133,5 +133,5 @@ All settings can be overridden with environment variables:
 | `CHROMA_PORT` | `8000` | ChromaDB port |
 | `CHROMA_COLLECTION` | `emails` | Collection name |
 | `EMBED_MODEL` | `BAAI/bge-base-en-v1.5` | Embedding model |
-| `N_EMAILS` | `50` | Emails to fetch per pipeline run (replies are filtered out automatically) |
+| `N_EMAILS` | `500` | Emails to fetch per pipeline run (replies are filtered out automatically) |
 | `N_RESULTS` | `5` | Results returned per query |
