@@ -61,7 +61,7 @@ def run_latency_report(n_values: list[int] = None, repeats: int = 3) -> dict:
 
     report = {
         "cost_usd_marginal": 0.0,
-        "cost_note": "Local embedding model (BGE-base-en-v1.5), no external API calls — marginal cost per query or ingest run is $0.",
+        "cost_note": "Local embedding model (BGE-base-en-v1.5), no external API calls - marginal cost per query or ingest run is $0.",
         "ingestion": measure_ingestion(n_values),
         "query_latency": measure_query_latency(collection, query_texts, repeats=repeats),
     }
