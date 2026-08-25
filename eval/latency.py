@@ -49,7 +49,7 @@ def measure_query_latency(collection, queries: list[str], repeats: int = 3) -> d
     }
 
 
-def run_latency_report(n_values: list[int] = None, repeats: int = 3) -> dict:
+def run_latency_report(n_values: list[int] = None, repeats: int = 3, output_path: Path = None) -> dict:
     n_values = n_values or [30, 60]
     emails = _load_emails()
     queries = json.loads((CORPUS_DIR / "queries.json").read_text())
@@ -65,8 +65,10 @@ def run_latency_report(n_values: list[int] = None, repeats: int = 3) -> dict:
         "ingestion": measure_ingestion(n_values),
         "query_latency": measure_query_latency(collection, query_texts, repeats=repeats),
     }
-    RESULTS_DIR.mkdir(exist_ok=True)
-    (RESULTS_DIR / "latency.json").write_text(json.dumps(report, indent=2))
+    if output_path is None:
+        output_path = RESULTS_DIR / "latency.json"
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(json.dumps(report, indent=2))
     return report
 
 

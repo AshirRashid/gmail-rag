@@ -1,8 +1,10 @@
 from eval.latency import run_latency_report
 
 
-def test_latency_report_has_expected_shape():
-    report = run_latency_report(n_values=[5, 10], repeats=2)
+def test_latency_report_has_expected_shape(tmp_path):
+    report = run_latency_report(
+        n_values=[5, 10], repeats=2, output_path=tmp_path / "latency.json"
+    )
 
     assert report["cost_usd_marginal"] == 0.0
     for entry in report["ingestion"]:

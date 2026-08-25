@@ -1,5 +1,5 @@
 # eval/ingest_synthetic.py
-"""Ingest the synthetic corpus into the real (persistent) ChromaDB collection —
+"""Ingest the synthetic corpus into the real (persistent) ChromaDB collection -
 used by demo.sh so a reviewer can try the actual app.py/query.py UI with no
 Gmail account, using the same ingest() code path as the real pipeline."""
 import json

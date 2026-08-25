@@ -8,7 +8,7 @@ die()  { echo -e "${RED}[error]${NC} $*" >&2; exit 1; }
 cd "$(dirname "$0")"
 
 # ── 1. Virtual environment ────────────────────────────────────────────────────
-[[ -d ".venv" ]] || die ".venv not found — run setup.sh first"
+[[ -d ".venv" ]] || die ".venv not found - run setup.sh first"
 source .venv/bin/activate
 
 # ── 2. ChromaDB ───────────────────────────────────────────────────────────────
@@ -48,10 +48,10 @@ except Exception:
     print(0)
 ")
 if [[ "$COUNT" -eq 0 ]]; then
-    info "No existing collection — ingesting inbox (this can take a while on first run)..."
+    info "No existing collection - ingesting inbox (this can take a while on first run)..."
     python pipeline.py
 else
-    info "Existing collection found (${COUNT} emails) — skipping ingest"
+    info "Existing collection found (${COUNT} emails) - skipping ingest"
 fi
 
 # ── 3. Launch UI ──────────────────────────────────────────────────────────────

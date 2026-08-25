@@ -83,7 +83,7 @@ def run_real_benchmark(queries_path: str, k: int = 5) -> dict:
     `queries_path` points at a local, gitignored file: a JSON list of
     {"query": str, "relevant_ids": list[str]} that you hand-label yourself
     by running query.py against your own inbox first.
-    Only aggregate numbers are written — no email content, subjects, or senders.
+    Only aggregate numbers are written - no email content, subjects, or senders.
     """
     queries = json.loads(Path(queries_path).read_text())
 

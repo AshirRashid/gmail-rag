@@ -6,7 +6,7 @@ GREEN='\033[0;32m'; NC='\033[0m'
 info() { echo -e "${GREEN}[demo]${NC} $*"; }
 
 if [[ ! -d ".venv" ]]; then
-    info "First run — setting up venv and dependencies..."
+    info "First run - setting up venv and dependencies..."
     PYTHON=$(command -v python3.11 || command -v python3)
     "$PYTHON" -m venv .venv
     source .venv/bin/activate

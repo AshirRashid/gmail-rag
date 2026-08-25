@@ -1,11 +1,11 @@
 # Email Event Finder (v2)
 
-Scans your Gmail inbox and surfaces emails that contain events, meetings, or scheduling information — using a local embedding model and ChromaDB.
+Scans your Gmail inbox and surfaces emails that contain events, meetings, or scheduling information - using a local embedding model and ChromaDB.
 
 ## How it works
 
 1. Fetches emails from Gmail via the API
-2. Skips replies — only the original (first) email in each thread is indexed
+2. Skips replies - only the original (first) email in each thread is indexed
 3. Cleans each email body (strips quoted replies, footers)
 4. Embeds each email as a single document with `BAAI/bge-base-en-v1.5` (runs locally)
 5. Stores embeddings in ChromaDB
@@ -116,9 +116,9 @@ The model matches meaning, not keywords. Queries work best when phrased as a des
 | Find travel | `an email with flight, hotel, or travel booking confirmation and dates` |
 
 **Tips:**
-- Describe the email, not what you want to do — *"an email confirming..."* not *"find confirmations..."*
-- Include the type of information you expect — dates, times, locations make queries more precise
-- Avoid single keywords — *"an email about a job interview with a scheduled time"* outperforms *"interview"*
+- Describe the email, not what you want to do - *"an email confirming..."* not *"find confirmations..."*
+- Include the type of information you expect - dates, times, locations make queries more precise
+- Avoid single keywords - *"an email about a job interview with a scheduled time"* outperforms *"interview"*
 
 ---
 

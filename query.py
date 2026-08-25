@@ -55,7 +55,7 @@ def query(text: str = DEFAULT_QUERY, n_results: int = N_RESULTS) -> list[dict]:
         )
     except Exception as exc:
         raise RuntimeError(
-            f"Collection '{CHROMA_COLLECTION}' not found — run pipeline.py first."
+            f"Collection '{CHROMA_COLLECTION}' not found - run pipeline.py first."
         ) from exc
     return search_collection(collection, text, n_results)
 

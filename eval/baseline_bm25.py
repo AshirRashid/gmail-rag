@@ -1,4 +1,4 @@
-"""BM25 baseline retriever — the standard IR comparison point for the semantic pipeline."""
+"""BM25 baseline retriever - the standard IR comparison point for the semantic pipeline."""
 from rank_bm25 import BM25Okapi
 
 
