@@ -9,4 +9,5 @@ token.json
 !requirements*.json
 !eval/synthetic_corpus/*.json
 !eval/results/*.json
+eval/real_queries.local.json
 .worktrees/

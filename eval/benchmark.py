@@ -4,7 +4,7 @@ from pathlib import Path
 
 import chromadb
 
-from config import CHROMA_COLLECTION, EMBED_MODEL
+from config import CHROMA_COLLECTION, CHROMA_HOST, CHROMA_PORT, EMBED_MODEL
 from embeddings import BGEEmbeddings
 from eval.baseline_bm25 import BM25Retriever
 from eval.metrics import mrr, precision_at_k, recall_at_k
@@ -75,6 +75,38 @@ def run_synthetic_benchmark(k: int = 5) -> dict:
     (RESULTS_DIR / "synthetic_benchmark.json").write_text(json.dumps(result, indent=2))
     _write_markdown_summary(result, RESULTS_DIR / "synthetic_benchmark.md")
     return result
+
+
+def run_real_benchmark(queries_path: str, k: int = 5) -> dict:
+    """
+    Run against the real, already-ingested Gmail collection.
+    `queries_path` points at a local, gitignored file: a JSON list of
+    {"query": str, "relevant_ids": list[str]} that you hand-label yourself
+    by running query.py against your own inbox first.
+    Only aggregate numbers are written — no email content, subjects, or senders.
+    """
+    queries = json.loads(Path(queries_path).read_text())
+
+    client = chromadb.HttpClient(host=CHROMA_HOST, port=CHROMA_PORT)
+    collection = client.get_collection(name=CHROMA_COLLECTION, embedding_function=BGEEmbeddings(EMBED_MODEL))
+    semantic_rank = lambda text, k: [r["id"] for r in search_collection(collection, text, n_results=k)]
+    semantic = _score_method(semantic_rank, queries, k)
+
+    raw = collection.get(include=["documents", "metadatas"])
+    docs = [{"id": rid, "subject": meta.get("subject", ""), "body": doc}
+            for rid, doc, meta in zip(raw["ids"], raw["documents"], raw["metadatas"])]
+    bm25 = BM25Retriever(docs)
+    bm25_scores = _score_method(bm25.search, queries, k)
+
+    summary = {
+        "k": k,
+        "n_queries": len(queries),
+        "semantic": {"precision": semantic["precision"], "recall": semantic["recall"], "mrr": semantic["mrr"]},
+        "bm25": {"precision": bm25_scores["precision"], "recall": bm25_scores["recall"], "mrr": bm25_scores["mrr"]},
+    }
+    RESULTS_DIR.mkdir(exist_ok=True)
+    (RESULTS_DIR / "real_benchmark_summary.json").write_text(json.dumps(summary, indent=2))
+    return summary
 
 
 if __name__ == "__main__":
