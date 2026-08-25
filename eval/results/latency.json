@@ -1,0 +1,21 @@
+{
+  "cost_usd_marginal": 0.0,
+  "cost_note": "Local embedding model (BGE-base-en-v1.5), no external API calls \u2014 marginal cost per query or ingest run is $0.",
+  "ingestion": [
+    {
+      "n": 50,
+      "seconds": 3.766,
+      "emails_per_sec": 13.28
+    },
+    {
+      "n": 200,
+      "seconds": 4.148,
+      "emails_per_sec": 48.21
+    }
+  ],
+  "query_latency": {
+    "p50_ms": 53.3,
+    "p95_ms": 63.3,
+    "n_samples": 48
+  }
+}
