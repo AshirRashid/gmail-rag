@@ -7,7 +7,7 @@ The four pieces:
 | Evidence | File | Headline |
 |---|---|---|
 | Retrieval quality | [`results/synthetic_benchmark.md`](results/synthetic_benchmark.md) | Semantic beats a BM25 baseline on precision, recall, and MRR (see below). |
-| Latency & cost | [`results/latency.json`](results/latency.json) | Query p50 60.7ms / p95 67.9ms; ingestion 7.73-13.45 emails/sec; $0 marginal cost. |
+| Latency & cost | [`results/latency.json`](results/latency.json) | Query p50 60.7ms / p95 67.9ms (M1 Pro, CPU only); ingestion 7.73-13.45 emails/sec; $0 marginal cost. |
 | Failure analysis | [`failures.md`](failures.md) | The lowest-recall queries per method, each traced to a concrete cause. |
 | Security review | [`security_review.md`](security_review.md) | OAuth read-only scope, unencrypted at-rest storage, one unresolved output-injection gap. |
 
@@ -24,10 +24,10 @@ Reproduce: `python -m eval.benchmark`. The gap is largest exactly where you woul
 
 ## Latency & cost
 
-From `results/latency.json`, measured on this machine:
+From `results/latency.json`, measured on a MacBook Pro (M1 Pro, macOS 13.7.6, 16GB RAM), CPU only with no GPU:
 
 - Ingestion throughput: 7.73 emails/sec at n=30, 13.45 emails/sec at n=60.
-- Query latency: p50 60.7ms, p95 67.9ms, over 48 samples.
+- Query latency: p50 60.7ms, p95 67.9ms, over 48 samples. Latency is hardware-dependent; the figure that matters is that a local CPU-only pipeline is fast enough for interactive search.
 - Marginal cost: $0. The embedding model (BGE-base-en-v1.5) runs locally with no external API calls, so there is no per-query or per-ingest cost.
 
 Reproduce: `python -m eval.latency`.

@@ -1,5 +1,7 @@
 """Ingestion throughput and query latency measurement."""
 import json
+import os
+import platform
 import statistics
 import time
 from pathlib import Path
@@ -14,6 +16,22 @@ from query import search_collection
 
 CORPUS_DIR = Path(__file__).parent / "synthetic_corpus"
 RESULTS_DIR = Path(__file__).parent / "results"
+
+
+def _machine_info() -> dict:
+    """Capture the hardware and OS the latency numbers were measured on.
+
+    A latency figure is meaningless without the machine behind it, so this
+    is recorded alongside the numbers. The pipeline has no GPU path, so the
+    embedding model runs on CPU regardless of the host.
+    """
+    return {
+        "os": f"{platform.system()} {platform.release()}",
+        "processor": platform.processor() or platform.machine(),
+        "python": platform.python_version(),
+        "cpu_count": os.cpu_count(),
+        "device": "cpu",
+    }
 
 
 def _load_emails() -> list[dict]:
@@ -62,6 +80,8 @@ def run_latency_report(n_values: list[int] = None, repeats: int = 3, output_path
     report = {
         "cost_usd_marginal": 0.0,
         "cost_note": "Local embedding model (BGE-base-en-v1.5), no external API calls - marginal cost per query or ingest run is $0.",
+        "machine": _machine_info(),
+        "latency_note": "Latency is hardware-dependent. Measured on the machine in 'machine', CPU only (no GPU).",
         "ingestion": measure_ingestion(n_values),
         "query_latency": measure_query_latency(collection, query_texts, repeats=repeats),
     }
